@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        var url = "https://reqres.in/api/users";
+
+        xhr.open("POST", url, true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        // Устанавливаем функцию, которая будет вызвана при изменении состояния запроса
+        xhr.onreadystatechange = function () {
+            // Проверяем, что запрос завершен и статус ответа 201 
+            if (xhr.readyState === 4 && xhr.status === 201) {
+                console.log("Статус запроса: " + xhr.status);
+                console.log("Ответ от API: " + xhr.responseText);
+            }
+        };
+
+        var data = JSON.stringify({
+            "name": "morpheus",
+            "job": "leader"
+        });
+
+        xhr.send(data);
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+    <script>
+    fetch('https://reqres.in/api/users?page=2')
+        .then(response => {
+            if (response.status === 200) {
+                console.log('Статус запроса:', response.status);
+                return response.json(); 
+            } else {
+                throw new Error('Не удалось получить данные: ' + response.status);
+            }
+        })
+        .then(data => {
+            console.log('Ответ от API:', data);
+        })
+        .catch(error => {
+            console.error('Произошла ошибка:', error);
+        });
+    </script>
+</body>
+</html>

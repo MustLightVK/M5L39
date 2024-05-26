@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+    <button id="fetchComment">Получить комментарий</button>
+
+    <script>
+    function fetchComment() {
+        const commentPromise = new Promise((resolve, reject) => {
+            fetch('https://jsonplaceholder.typicode.com/comments/31')
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        reject('Ошибка при запросе: ' + response.status);
+                    }
+                })
+                .then(comment => {
+                    resolve(comment);
+                })
+                .catch(error => {
+                    reject('Ошибка сети: ' + error.message);
+                });
+        });
+    
+        commentPromise.then(comment => {
+            console.log(comment);
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+    
+    document.getElementById('fetchComment').addEventListener('click', fetchComment);
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <script>
+    const getNumber = n => {
+    return new Promise(resolve => {
+        setTimeout(() => {
+        resolve(n);
+        }, 2000);
+    });
+    };
+
+    const printNumber = async n => {
+    const response = await getNumber(n);
+    return response;
+    };
+
+    (async () => {
+        try {
+            const data = await printNumber(100);
+            console.log(data);
+        } catch (error) {
+            console.error(error);
+        }
+    })();
+    </script>
+</body>
+</html>
